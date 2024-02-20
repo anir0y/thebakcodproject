@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <style>
+        /* Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+        
+        /* Styles */
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: #f7e3e3; /* Soft pink background */
+            color: #4a4a4a; /* Dark gray text */
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 2.5rem;
+            color: #e85a71; /* Romantic pink */
+        }
+
+        /* Message container */
+        .message-container {
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        /* Individual message */
+        .message {
+            background-color: #fff; /* White background */
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        }
+
+        /* Message text */
+        .message-text {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Messages</h1>
+    <div class="message-container">
+        <% messages.forEach(message => { %>
+            <div class="message">
+                <p class="message-text"><%= message.message %></p>
+            </div>
+        <% }); %>
+    </div>
+</body>
+</html>

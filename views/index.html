@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Profiles</title>
+    <style>
+        /* Style for circular images */
+        .profile-image {
+            border-radius: 50%;
+            width: 54px; /* Twice the radius to create circle */
+            height: 54px; /* Twice the radius to create circle */
+            object-fit: cover;
+        }
+
+        /* Style for profile containers */
+        .profile-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        /* Style for profile names */
+        .profile-name {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Profiles</h1>
+    <div id="profiles"></div>
+    <a href="/admin">admin</a>
+
+    <script>
+        fetch('/profiles')
+            .then(response => response.json())
+            .then(profiles => {
+                const profilesContainer = document.getElementById('profiles');
+                profiles.forEach(profile => {
+                    const profileContainer = document.createElement('div');
+                    profileContainer.className = 'profile-container';
+
+                    const profileImage = document.createElement('img');
+                    profileImage.src = `/uploads/${profile.picture}`;
+                    profileImage.alt = 'Profile Picture';
+                    profileImage.className = 'profile-image';
+                    profileImage.style.width = '54px';
+                    profileImage.style.height = '54px'; // Sets the image size
+
+                    const profileName = document.createElement('p');
+                    profileName.textContent = profile.full_name;
+                    profileName.className = 'profile-name';
+
+                    // Open profile on click
+                    profileContainer.addEventListener('click', () => {
+                        window.location.href = `/boy?id=${profile.id}`;
+                    });
+
+                    profileContainer.appendChild(profileImage);
+                    profileContainer.appendChild(profileName);
+                    profilesContainer.appendChild(profileContainer);
+                });
+            })
+            .catch(error => console.error('Error fetching profiles:', error));
+    </script>
+</body>
+</html>
